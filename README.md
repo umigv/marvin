@@ -36,6 +36,9 @@ git clone https://github.com/umigv/marvin.git
     - `rosserial`: [https://github.com/ros-drivers/rosserial](https://github.com/ros-drivers/rosserial)
     - `velodyne`: [https://github.com/ros-drivers/velodyne](https://github.com/ros-drivers/velodyne)
     - `velodyne_simulator`: (for simulation) [https://bitbucket.org/DataspeedInc/velodyne_simulator](https://bitbucket.org/DataspeedInc/velodyne_simulator)
+    - `zed_ros_wrapper` (also need to install ZED SDK and CUDA—need an NVIDIA GPU): [https://github.com/stereolabs/zed-ros-wrapper](https://github.com/stereolabs/zed-ros-wrapper)
+    - `joy` (for teleop): [https://github.com/ros-drivers/joystick_drivers](https://github.com/ros-drivers/joystick_drivers)
+    - `teleop_twist_joy` (for teleop): [https://github.com/ros-teleop/teleop_twist_joy](https://github.com/ros-teleop/teleop_twist_joy)
 
 ## Set up Cartographer
 
@@ -71,14 +74,17 @@ source devel/setup.bash # run this command from the catkin workspace base folder
 ## Launch the Simulation
 
 ```bash
-# Launch with sensors in RVIZ
+# Launch just simulation with sensors in RVIZ (no Cartographer)
 roslaunch marvin world.launch 2> >(grep -v -E 'TF_REPEATED_DATA|buffer_core|lookupTransform')
 
-# Launch with no RVIZ (for Cartgrapher)
+# Launch just simulation with no RVIZ (for running with Cartgrapher separately)
 roslaunch marvin world_no_rviz.launch 2> >(grep -v -E 'TF_REPEATED_DATA|buffer_core|lookupTransform')
 
 # Launch Cartographer
 roslaunch marvin cartographer_sim.launch 2> >(grep -v -E 'TF_REPEATED_DATA|buffer_core|lookupTransform|at line|^$')
+
+# Launch simulation together with Cartographer
+roslaunch marvin sim.launch 2> >(grep -v -E 'TF_REPEATED_DATA|buffer_core|lookupTransform|at line|^$')
 ```
 
 ## Launch the Robot

@@ -2,7 +2,7 @@
 
 <robot name="marvin" xmlns:xacro="http://www.ros.org/wiki/xacro">
 	<xacro:property name="front_offset" value="0.3" /> <!-- How far forward the wheels and lidar are compared to the center of the chassis -->
-	<xacro:property name="back_offset" value="-0.7715" /> <!-- How far back the caster wheel is compared to the center of the chassis -->
+	<xacro:property name="back_offset" value="-0.6715" /> <!-- How far back the caster wheel is compared to the center of the chassis -->
 	
 	<xacro:property name="chassis_mass" value="29.9371" />
 	<xacro:property name="chassis_length" value="1.143" />
@@ -54,16 +54,16 @@
 		</visual>
 
 		<visual name="chassis_front_visual">
-			<origin xyz="${chassis_length/2+0.1} 0 ${0.05-chassis_height/2}" rpy="0 0 0" />
+			<origin xyz="${chassis_length/2+0.15} 0 ${0.05-chassis_height/2}" rpy="0 0 0" />
 			<geometry>
-				<box size="${0.2} ${chassis_width} ${0.1}" />
+				<box size="0.3 ${chassis_width} 0.1" />
 			</geometry>
 		</visual>
 
 		<visual name="chassis_back_visual">
-			<origin xyz="${-chassis_length/2-0.15} 0 ${0.05-chassis_height/2}" rpy="0 0 0" />
+			<origin xyz="${-chassis_length/2-0.1} 0 ${0.05-chassis_height/2}" rpy="0 0 0" />
 			<geometry>
-				<box size="${0.3} ${chassis_width} ${0.1}" />
+				<box size="0.2 ${chassis_width} 0.1" />
 			</geometry>
 		</visual>
 
@@ -114,8 +114,14 @@
 	<!-- ZED Camera -->
 	<xacro:include filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro" />
 	<xacro:zed_camera name="zed" model="zed" parent="chassis">
-		<origin xyz="${camera_front_offset} 0 ${lidar_height-chassis_height/2-camera_z_offset}" rpy="${-pi/2} 0 ${-pi/2}" /> <!-- Rotation may be wrong -->
+		<origin xyz="${camera_front_offset} 0 ${lidar_height-chassis_height/2-camera_z_offset}" rpy="0 0 0" /> <!-- Rotation may be wrong -->
 	</xacro:zed_camera>
+
+	<!-- Sim Camera -->
+	<xacro:include filename="$(find marvin)/urdf/camera.xacro" />
+	<xacro:camera mass="${camera_mass}">
+		<origin xyz="${camera_front_offset} 0 ${lidar_height-chassis_height/2-camera_z_offset+0.03/2}" rpy="0 0 0" /> <!-- Rotation may be wrong -->
+	</xacro:camera>
 
 	<!-- LiDAR -->
 	<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />

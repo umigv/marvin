@@ -20,8 +20,9 @@
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory $(find marvin)/configuration_files
-          -configuration_basename marvin.lua"
+          -configuration_basename marvin_sim.lua"
       output="screen">
+      <remap from="/points2" to="/velodyne_points/filtered" />
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"

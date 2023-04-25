@@ -16,14 +16,14 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <box size="0.05 0.05 0.05"/>
+                    <box size="0.05 0.05 0.03"/>
                 </geometry>
             </visual>
     
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <box size="0.05 0.05 0.05"/>
+                    <box size="0.05 0.05 0.03"/>
                 </geometry>
             </collision>
         </link>
@@ -44,7 +44,7 @@
         </joint>
     
         <gazebo reference="camera">
-            <material>Gazebo/Red</material>
+            <material>Gazebo/Yellow</material>
         </gazebo>
     </xacro:macro>
 </robot>

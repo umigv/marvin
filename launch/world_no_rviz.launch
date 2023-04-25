@@ -11,7 +11,7 @@
 	<arg name="robot_name" default="marvin"/>
 
 	<!-- Launch other relevant files-->
-	<include file="$(find marvin)/launch/robot_description_sim.launch"/>
+	<include file="$(find marvin)/launch/robot_description.launch"/>
 
 	<!-- World File -->
 	<arg name="world_file" default="$(find marvin)/worlds/finalWorldWithObstacles.sdf"/>
@@ -32,5 +32,5 @@
 			  -x $(arg x) -y $(arg y) -z $(arg z)
 			  -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
 	
-	<include file="$(find marvin)/launch/ground_filter.launch"/>
+	<include file="$(find marvin)/launch/ground_filter_sim.launch"/>
 </launch>

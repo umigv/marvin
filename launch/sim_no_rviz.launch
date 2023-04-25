@@ -2,5 +2,5 @@
 
 <launch>
     <include file="$(find marvin)/launch/world_no_rviz.launch"/>
-    <include file="$(find marvin)/launch/cartographer_sim.launch"/>
+    <include file="$(find marvin)/launch/cartographer_sim_no_rviz.launch"/>
 </launch>
