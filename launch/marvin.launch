@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <node name="configure_lidar" pkg="marvin" type="configure_lidar.sh" launch-prefix="sudo" output="screen" />
+    <include file="$(find marvin)/launch/robot_description.launch"/>
+    <!-- <include file="$(find marvin)/launch/embedded.launch" /> -->
+    <node pkg="rosserial_python" type="serial_node.py" name="serial_node_encoders" respawn="true">
+        <param name="port" value="/dev/ttyACM0"/>
+        <param name="baud" type="int" value="57600" />
+    </node>
+    <include file="$(find ros_imu_bno055)/launch/imu.launch">
+        <arg name="topic" value="/imu" />
+    </include>
+    <include file="$(find marvin)/launch/odom_ekf.launch"/>
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+    <include file="$(find marvin)/launch/ground_filter.launch"/>
+    <include file="$(find cv_full)/launch/depth.launch" />
+    <include file="$(find marvin)/launch/cartographer.launch"/>
+    <include file="$(find marvin)/launch/rviz.launch"/>
+</launch>

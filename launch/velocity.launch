@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find sensors_launch)/launch/teleop_ps4.launch"/>
+    <node name="cmd_vel_selector_node" pkg="cmd_vel_selector" type="cmd_vel_selector_node" output="screen" clear_params="true" required="true">  
+    </node>
+    
+</launch>

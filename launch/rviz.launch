@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen"
+		  args="-d $(find marvin)/rviz/marvin_nav.rviz"/>
+</launch>
